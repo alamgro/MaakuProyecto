@@ -10,7 +10,7 @@ public class SceneTransition : MonoBehaviour
     public Animator transitionAnim;
     public Text dialogo;
     float timer = 0.0f;
-    bool wasActivated = false;
+    bool firstCicle = false;
     int count = 0;
     void Start()
     {
@@ -40,12 +40,12 @@ public class SceneTransition : MonoBehaviour
             dialogo.text = _text;
             transitionAnim.SetTrigger("StartAgain");
             timer = 0.0f;
-            wasActivated = false;
+            firstCicle = false;
             count++;
         }
-        else if (timer >= 2.0f && !wasActivated)
+        else if (timer >= 2.0f && !firstCicle)
         {
-            wasActivated = true;
+            firstCicle = true;
             transitionAnim.SetTrigger("End");
         }
     }
