@@ -5,7 +5,7 @@ using UnityEngine;
 public class Pickup : MonoBehaviour
 {
     private Inventory inventory;
-    public GameObject itemButton;
+    public GameObject objetoInventario;
     bool triggered = false;
 
     void Start()
@@ -35,11 +35,23 @@ public class Pickup : MonoBehaviour
                 {
                     //Item can be added
                     inventory.isFull[i] = true;
-                    Instantiate(itemButton, inventory.slots[i].transform, false);
+                    Instantiate(objetoInventario, inventory.slots[i].transform, false);
                     Destroy(gameObject);
                     break;
                 }
             }
+        }
+
+        if (Input.GetKeyDown(KeyCode.Alpha1))
+        {
+            
+            if (inventory.isFull[0] == true)
+            {
+                //Item can be added
+                inventory.isFull[0] = false;
+                Instantiate(objetoInventario, this.transform.position, Quaternion.identity);
+            }
+            
         }
     }
 

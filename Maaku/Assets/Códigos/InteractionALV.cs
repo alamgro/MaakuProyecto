@@ -11,15 +11,18 @@ public class InteractionALV : MonoBehaviour
     public Text dialogo;
     public GameObject boton;
     public GameObject itemButton;
+    public GameObject itemDropeado;
     private Inventory inventory;
+    GameObject itemToDelete;
     Collider2D colisionALV;
 
     int countInteraction = 0;
     bool triggered = false;
     Vector3 posDefault = new Vector3(0, 15, 0);
+
     void Start()
     {
-        inventory = GameObject.FindGameObjectWithTag("Player").GetComponent<Inventory>();      
+        inventory = GameObject.FindGameObjectWithTag("Player").GetComponent<Inventory>();
     }
 
     void OnTriggerEnter2D(Collider2D collision)
@@ -45,11 +48,10 @@ public class InteractionALV : MonoBehaviour
             {
                 //Item can be added
                 inventory.isFull[i] = true;
-                Instantiate(itemButton, inventory.slots[i].transform, false);
+                itemToDelete = Instantiate(itemButton, inventory.slots[i].transform, false);
                 break;
             }
         }
-        countInteraction++;
     }
     
     void Update()
@@ -67,13 +69,16 @@ public class InteractionALV : MonoBehaviour
                 closet.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("Muebles/ClosetOpen2");
                 itemButton.GetComponent<Image>().sprite = Resources.Load<Sprite>("Items/Baterias");
                 CheckInventory();
+                countInteraction++;
             }
             else if (colisionALV.gameObject.name == "Closet" && countInteraction == 2) //Obtiene el collar
             {
+                colisionALV.gameObject.GetComponent<BoxCollider2D>().enabled = false; //Desactivar el trigger del objeto cuando ya se interactuó
                 dialogo.text = "-Obtuve un collar...";
                 closet.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("Muebles/ClosetOpen3");
                 itemButton.GetComponent<Image>().sprite = Resources.Load<Sprite>("Items/Collar");
                 CheckInventory();
+                countInteraction++;
             }
             else if (colisionALV.gameObject.name == "Closet" && countInteraction == 3)
             {
@@ -89,6 +94,7 @@ public class InteractionALV : MonoBehaviour
             }
             else if(colisionALV.gameObject.name == "CofreOpen")
             {
+                colisionALV.gameObject.GetComponent<BoxCollider2D>().enabled = false; //Desactivar el trigger del objeto cuando ya se interactuó
                 dialogo.text = "-Obtuve a Teddy...";
                 itemButton.GetComponent<Image>().sprite = Resources.Load<Sprite>("Items/Teddy");
                 colisionALV.gameObject.name = "CofreOpen*";
@@ -102,6 +108,20 @@ public class InteractionALV : MonoBehaviour
                 SceneManager.LoadScene("Patio");
             }
 
+        }
+
+        if (Input.GetKeyDown(KeyCode.Alpha1))
+        {
+            if (inventory.isFull[0] == true)
+            {
+                //Item can be added
+                inventory.isFull[0] = false;
+                itemDropeado.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("Items/" + itemButton.GetComponent<Image>().sprite.name);
+                Instantiate(itemDropeado, this.transform.position, Quaternion.identity);
+
+                Destroy(itemToDelete);
+                
+            }
         }
 
     }

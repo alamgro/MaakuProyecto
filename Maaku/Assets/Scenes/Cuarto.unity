@@ -132,6 +132,7 @@ GameObject:
   - component: {fileID: 519420032}
   - component: {fileID: 519420031}
   - component: {fileID: 519420029}
+  - component: {fileID: 519420030}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -147,6 +148,18 @@ AudioListener:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 519420028}
   m_Enabled: 1
+--- !u!114 &519420030
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 519420028}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1425c7a1524e85e45a84496896024b8b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!20 &519420031
 Camera:
   m_ObjectHideFlags: 0
@@ -1786,7 +1799,7 @@ PrefabInstance:
     - target: {fileID: 4604326651106555456, guid: 27b0ee432444f304ebbc0ee4769587d6,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -6.92
+      value: -0.72
       objectReference: {fileID: 0}
     - target: {fileID: 4604326651106555456, guid: 27b0ee432444f304ebbc0ee4769587d6,
         type: 3}
@@ -1863,6 +1876,28 @@ PrefabInstance:
       propertyPath: boton
       value: 
       objectReference: {fileID: 824928906}
+    - target: {fileID: 4604326651106555482, guid: 27b0ee432444f304ebbc0ee4769587d6,
+        type: 3}
+      propertyPath: itemDropeado
+      value: 
+      objectReference: {fileID: 4224462919413279720, guid: ff36f473ffa3f7241b88a103a751e33f,
+        type: 3}
+    - target: {fileID: 4604326651106555482, guid: 27b0ee432444f304ebbc0ee4769587d6,
+        type: 3}
+      propertyPath: itemButton
+      value: 
+      objectReference: {fileID: 7686038862115027372, guid: ef7591468b4ae1d4e8068b7eb6cef6b4,
+        type: 3}
+    - target: {fileID: 4604326651106555483, guid: 27b0ee432444f304ebbc0ee4769587d6,
+        type: 3}
+      propertyPath: slots.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4604326651106555483, guid: 27b0ee432444f304ebbc0ee4769587d6,
+        type: 3}
+      propertyPath: isFull.Array.size
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4604326651106555483, guid: 27b0ee432444f304ebbc0ee4769587d6,
         type: 3}
       propertyPath: slots.Array.data[0]

@@ -5,43 +5,36 @@ using UnityEngine;
 public class CamaCambiarSprite : MonoBehaviour
 {
     public GameObject personaje;
-    int count = 0;
     // Start is called before the first frame update
     Vector3 posReal;
+    //float timer = 0.0f;
+
     void Start()
     {
-        personaje.SetActive(false);
+        //personaje.SetActive(false);
         this.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("Muebles/Cama/CamaMaaku1");
         posReal = this.transform.position;
     }
 
     // Update is called once per frame
-    void Update()
+    /*void Update()
     {
-        if (Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.D))
+        timer += Time.deltaTime;
+        if(timer > 4.5f)
         {
-            if(count == 0)
-            {
-                this.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("Muebles/Cama/CamaMaaku2");
-                count++;
-            }
-            else if (count == 1)
-            {
-                this.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("Muebles/Cama/CamaMaaku3");
-                this.transform.position = new Vector3(this.transform.position.x, -0.447f, 0);
-                count++;
-            }
-            else if (count == 2)
-            {
-                this.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("Muebles/Cama/Cama");
-                this.transform.position = posReal;
-                personaje.SetActive(true);
-                count++;
-            }
-
+            this.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("Muebles/Cama/Cama");
+            this.transform.position = posReal;
+            personaje.SetActive(true);
         }
-        
-        
+        else if (timer > 3.0f)
+        {
+            this.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("Muebles/Cama/CamaMaaku3");
+            this.transform.position = new Vector3(this.transform.position.x, -0.447f, 0);
+        }
+        else if (timer > 1.5f)
+        {
+            this.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("Muebles/Cama/CamaMaaku2");
+        }
 
-    }
+    }*/
 }
