@@ -44,14 +44,12 @@ public class Pickup : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
-            
             if (inventory.isFull[0] == true)
             {
                 //Item can be added
                 inventory.isFull[0] = false;
                 Instantiate(objetoInventario, this.transform.position, Quaternion.identity);
             }
-            
         }
     }
 
