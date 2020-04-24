@@ -7,17 +7,17 @@ public class CamaCambiarSprite : MonoBehaviour
     public GameObject personaje;
     // Start is called before the first frame update
     Vector3 posReal;
-    //float timer = 0.0f;
+    float timer = 0.0f;
 
     void Start()
     {
-        //personaje.SetActive(false);
+        personaje.SetActive(false);
         this.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("Muebles/Cama/CamaMaaku1");
         posReal = this.transform.position;
     }
 
     // Update is called once per frame
-    /*void Update()
+    void Update()
     {
         timer += Time.deltaTime;
         if(timer > 4.5f)
@@ -36,5 +36,5 @@ public class CamaCambiarSprite : MonoBehaviour
             this.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("Muebles/Cama/CamaMaaku2");
         }
 
-    }*/
+    }
 }
