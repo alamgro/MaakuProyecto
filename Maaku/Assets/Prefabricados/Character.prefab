@@ -14,7 +14,6 @@ GameObject:
   - component: {fileID: 4604326651106555485}
   - component: {fileID: 4604326651106555484}
   - component: {fileID: 4604326651106555483}
-  - component: {fileID: 4604326651106555482}
   - component: {fileID: 4604326651106555481}
   m_Layer: 0
   m_Name: Character
@@ -154,29 +153,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fa472e6e2b255d940b8122cdceb91fb5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isFull: 000000
-  slots:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
---- !u!114 &4604326651106555482
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4604326651106555480}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ce4b90acd859cff44b2c8b8479535384, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  closet: {fileID: 0}
-  Cofre: {fileID: 0}
-  dialogo: {fileID: 0}
-  boton: {fileID: 0}
-  itemButton: {fileID: 7686038862115027372, guid: ef7591468b4ae1d4e8068b7eb6cef6b4,
-    type: 3}
+  isFull: 0
+  slots: {fileID: 0}
+  item: {fileID: 0}
 --- !u!60 &4604326651106555481
 PolygonCollider2D:
   m_ObjectHideFlags: 0

@@ -44,16 +44,13 @@ public class InteractionALV : MonoBehaviour
 
     void CheckInventory()
     {
-        for (int i = 0; i < inventory.slots.Length; i++)
-        {
-            if (inventory.isFull[i] == false)
+            if (inventory.isFull == false)
             {
                 //Item can be added
-                inventory.isFull[i] = true;
-                itemToDelete = Instantiate(itemButton, inventory.slots[i].transform, false);
-                break;
+                inventory.isFull = true;
+                itemToDelete = Instantiate(itemButton, inventory.slots.transform, false);
+               
             }
-        }
     }
     
     void Update()
@@ -65,7 +62,7 @@ public class InteractionALV : MonoBehaviour
                 closet.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("Muebles/ClosetOpen1");
                 countInteraction++;
             }
-            else if (colisionALV.gameObject.name == "Closet" && countInteraction == 1 && inventory.isFull[0] == false) //Obtiene las baterías
+            else if (colisionALV.gameObject.name == "Closet" && countInteraction == 1 && inventory.isFull == false) //Obtiene las baterías
             {
                 dialogo.text = "-Obtuve unas baterías...";
                 closet.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("Muebles/ClosetOpen2");
@@ -73,7 +70,7 @@ public class InteractionALV : MonoBehaviour
                 CheckInventory();
                 countInteraction++;
             }
-            else if (colisionALV.gameObject.name == "Closet" && countInteraction == 2 && inventory.isFull[0] == false) //Obtiene el collar
+            else if (colisionALV.gameObject.name == "Closet" && countInteraction == 2 && inventory.isFull == false) //Obtiene el collar
             {
                 colisionALV.gameObject.GetComponent<BoxCollider2D>().enabled = false; //Desactivar el trigger del objeto cuando ya se interactuó
                 dialogo.text = "-Obtuve un collar...";
@@ -94,7 +91,7 @@ public class InteractionALV : MonoBehaviour
                 Cofre.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("Muebles/CofreOpen");
                 colisionALV.gameObject.name = "CofreOpen";
             }
-            else if(colisionALV.gameObject.name == "CofreOpen" && inventory.isFull[0] == false)
+            else if(colisionALV.gameObject.name == "CofreOpen" && inventory.isFull == false)
             {
                 colisionALV.gameObject.GetComponent<BoxCollider2D>().enabled = false; //Desactivar el trigger del objeto cuando ya se interactuó
                 dialogo.text = "-Obtuve a Teddy...";
@@ -119,10 +116,10 @@ public class InteractionALV : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
-            if (inventory.isFull[0] == true)
+            if (inventory.isFull == true)
             {
                 //Item can be added
-                inventory.isFull[0] = false;
+                inventory.isFull = false;
                 itemDropeado.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("Items/" + itemButton.GetComponent<Image>().sprite.name);
                 Instantiate(itemDropeado, this.transform.position, Quaternion.identity);
 
@@ -131,6 +128,6 @@ public class InteractionALV : MonoBehaviour
         }
 
     }
-
+    
 
 }
