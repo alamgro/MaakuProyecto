@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-
 public class Inventory : MonoBehaviour
 {
     public bool isFull;
@@ -18,6 +17,7 @@ public class Inventory : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Alpha1) && isFull)
         {
+
             //Item can be added
             Instantiate(itemQueSuelta, this.transform.position, Quaternion.identity);
             Destroy(InteraccionObjeto.itemToDelete);

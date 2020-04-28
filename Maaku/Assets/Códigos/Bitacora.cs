@@ -17,10 +17,13 @@ public class Bitacora : MonoBehaviour
            Cambio en la forma de interactuar con objetos. Nuevo script "InteraccionObjeto" que sirve para cualquier objeto al que se añada como componente,
            haciendo flexible los cambios para cada uno. Este script detecta cuál objeto debe de ser tomado para ponerlo en el inventario.
            Se remueven los otros dos slots del inventario, solo quedó uno.
-           reación del escenario "Habitacion2" dentro de la misma escena, se ponen todos los sprites.
+           Recreación del escenario "Habitacion2" dentro de la misma escena, se ponen todos los sprites.
            Reacomodo de carpetas de sprites para Habitación2.
            Se cambia el funcionamiento de la cámara, ahora sigue al personaje en habitaciones más grandes donde sea posible. Usando el paquete de componente Cinemachine
 
-
+    -Alam; Se añade un Objeto AudioManager a la escena para manejar sonidos en el juego.
+           Añadido clip de sonido para Cofre, puerta, e intro (pájaros sonando).
+           Corrección de un bug en el cofre al recoger al oso.
+-
      */
 }

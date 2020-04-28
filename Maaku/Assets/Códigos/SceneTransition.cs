@@ -7,6 +7,7 @@ using UnityEngine.SceneManagement;
 
 public class SceneTransition : MonoBehaviour
 {
+    public AudioClip audioSFX;
     public Animator transitionAnim;
     public Text dialogo;
     float timer = 0.0f;
@@ -14,6 +15,7 @@ public class SceneTransition : MonoBehaviour
     int count = 0;
     void Start()
     {
+        SoundScript.playSound(audioSFX);
         dialogo.text = "-The birds are singing… it’s late.";
     }
 

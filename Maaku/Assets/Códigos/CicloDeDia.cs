@@ -5,6 +5,7 @@ using UnityEngine;
 public class CicloDeDia : MonoBehaviour
 {
     public GameObject ventana;
+    public Sprite[] spritesVentana;
 
     float timer = 0.0f;
     // Start is called before the first frame update
@@ -18,10 +19,10 @@ public class CicloDeDia : MonoBehaviour
         timer += Time.deltaTime;
         if (timer > 4.0f)
         {
-            ventana.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("Muebles/VentanaDia");
+            ventana.GetComponent<SpriteRenderer>().sprite = spritesVentana[0];
             timer = 0.0f;
         }
         else if (timer > 2.0f)
-            ventana.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("Muebles/VentanaNoche");
+            ventana.GetComponent<SpriteRenderer>().sprite = spritesVentana[1];
     }
 }

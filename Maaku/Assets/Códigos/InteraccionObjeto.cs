@@ -10,19 +10,23 @@ public class InteraccionObjeto : Inventory
 	public GameObject itemQueRecoge; //Prefab que cambia el item que recoge
 	public Sprite[] objetoSprites; //Array de sprites para los muebles y objetos de escenario
 	public Sprite[] itemSprites; //Array de sprites de los items que puede recoger en este objeto
+	public AudioClip audioSFX;
 	int countSprite = 0, countItem = 0;
 	private bool isTrigger = false;
 	public static GameObject itemToDelete;
 	private Inventory inventory;
+	Text dialogo;
+
 	void Start()
 	{
 		inventory = GameObject.FindGameObjectWithTag("Player").GetComponent<Inventory>();
+		dialogo = GameObject.FindGameObjectWithTag("Dialog").GetComponent<Text>();
 	}
 
 	void OnTriggerEnter2D(Collider2D collision)
 	{
 		isTrigger = true;
-		if (collision.gameObject.tag == "Player" && countSprite != objetoSprites.Length) //Checa que la colisión sea con el player y todavía haya interacciones
+		if (collision.gameObject.tag == "Player" && countItem != itemSprites.Length) //Checa que la colisión sea con el player y todavía haya interacciones
 		{
 			boton.SetActive(true);
 			boton.transform.position = new Vector3(this.transform.position.x, 3.5f, 0);
@@ -54,6 +58,7 @@ public class InteraccionObjeto : Inventory
 		itemQueRecoge.GetComponent<Image>().sprite = itemSprites[countItem];
 		itemToDelete = Instantiate(itemQueRecoge, inventory.slots.transform, false);
 		itemQueSuelta.GetComponent<SpriteRenderer>().sprite = itemQueRecoge.GetComponent<Image>().sprite; //Le decimos cuál item debería soltar en caso de que presione 1
+		dialogo.text = "Found: " + itemQueRecoge.GetComponent<Image>().sprite.name;
 		countItem++;
 	}
 
@@ -63,6 +68,7 @@ public class InteraccionObjeto : Inventory
 		{
 			if(countSprite == 0) //Para la primera vez que interactúa con el objeto (interacción #0)
 			{
+				SoundScript.playSound(audioSFX); //Audio que se va a reproducir al interactuar la primera vez con el objeto
 				this.gameObject.GetComponent<SpriteRenderer>().sprite = objetoSprites[countSprite];
 				countSprite++;
 			}

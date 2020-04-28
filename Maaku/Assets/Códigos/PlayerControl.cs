@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerControl : MonoBehaviour
 {
-    public float moveSpeed = 4.0f, jumpSpeed = 10.0f;
+    float moveSpeed = 4.0f, jumpSpeed = 10.0f;
     
     void Update()
     {
