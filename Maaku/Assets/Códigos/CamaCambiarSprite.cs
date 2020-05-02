@@ -5,13 +5,17 @@ using UnityEngine;
 public class CamaCambiarSprite : MonoBehaviour
 {
     public GameObject personaje;
+    public GameObject objetoDibujo;
+
     // Start is called before the first frame update
     Vector3 posReal;
     float timer = 0.0f;
 
     void Start()
     {
-        personaje.SetActive(false);
+        objetoDibujo.GetComponent<InteraccionSoloDialogo>().enabled = false;
+        personaje.GetComponent<PlayerControl>().enabled = false;
+        personaje.GetComponent<SpriteRenderer>().sortingOrder = -10; //hacer que maaku no se vea
         this.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("Muebles/Cama/CamaMaaku1");
         posReal = this.transform.position;
     }
@@ -24,7 +28,10 @@ public class CamaCambiarSprite : MonoBehaviour
         {
             this.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("Muebles/Cama/Cama");
             this.transform.position = posReal;
-            personaje.SetActive(true);
+            personaje.GetComponent<SpriteRenderer>().sortingOrder = 4;
+            personaje.GetComponent<PlayerControl>().enabled = true;
+            objetoDibujo.GetComponent<InteraccionSoloDialogo>().enabled = true; //Activar la interacción con el dibujo al levantarse de la cama
+            this.GetComponent<CamaCambiarSprite>().enabled = false;
         }
         else if (timer > 3.0f)
         {
@@ -34,6 +41,7 @@ public class CamaCambiarSprite : MonoBehaviour
         else if (timer > 1.5f)
         {
             this.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("Muebles/Cama/CamaMaaku2");
+            
         }
 
     }

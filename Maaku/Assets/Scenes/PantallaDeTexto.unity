@@ -150,9 +150,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fc0dcb90484d4264abea2af814b5a19c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  audioSFX: {fileID: 8300000, guid: 95b12fe2001de084e8eff340b24305ac, type: 3}
   transitionAnim: {fileID: 1675148663}
   dialogo: {fileID: 1675148660}
+  audioSFX: {fileID: 8300000, guid: 95b12fe2001de084e8eff340b24305ac, type: 3}
 --- !u!4 &763790275
 Transform:
   m_ObjectHideFlags: 0

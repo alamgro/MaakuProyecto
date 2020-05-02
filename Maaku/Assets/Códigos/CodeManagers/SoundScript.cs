@@ -18,3 +18,6 @@ public class SoundScript : MonoBehaviour
     }
 
 }
+
+//AudioListener.pause=true; is used to pause all the AudioClips
+//AudioSource.ignoreListenerPause=true; used with a specific audio to ignore the pause command

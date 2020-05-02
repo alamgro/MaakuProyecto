@@ -6,13 +6,13 @@ using UnityEngine.UI;
 public class InteraccionObjeto : Inventory
 {
 	public bool esParaAbrir; //Determina si el objeto tiene un sprite donde está cerrado (que tiene una interacción que no dropea item)
-	public GameObject boton; //Boton de PressE
+	public int numDeSecuenciaObj;
 	public GameObject itemQueRecoge; //Prefab que cambia el item que recoge
 	public Sprite[] objetoSprites; //Array de sprites para los muebles y objetos de escenario
 	public Sprite[] itemSprites; //Array de sprites de los items que puede recoger en este objeto
 	public AudioClip audioSFX;
 	int countSprite = 0, countItem = 0;
-	private bool isTrigger = false;
+	private bool isTriggered = false;
 	public static GameObject itemToDelete;
 	private Inventory inventory;
 	Text dialogo;
@@ -25,25 +25,16 @@ public class InteraccionObjeto : Inventory
 
 	void OnTriggerEnter2D(Collider2D collision)
 	{
-		isTrigger = true;
-		if (collision.gameObject.tag == "Player" && countItem != itemSprites.Length) //Checa que la colisión sea con el player y todavía haya interacciones
-		{
-			boton.SetActive(true);
-			boton.transform.position = new Vector3(this.transform.position.x, 3.5f, 0);
-		}
+		isTriggered = true;
 	}
 
-	void OnTriggerExit2D(Collider2D collision) //Cuando sale del trigger quita el botón de la pantalla
+	void OnTriggerExit2D(Collider2D collision)
 	{
-		isTrigger = false;
-		if (collision.gameObject.tag == "Player")
-		{
-			boton.SetActive(false);
-		}
+		isTriggered = false;
 	}
 	void Update()
 	{
-		if (isTrigger)
+		if (isTriggered && numDeSecuenciaObj <= GameManager.secuenciaActual)
 		{
 			if (esParaAbrir) 
 				objetoQueSeAbre();
@@ -58,15 +49,15 @@ public class InteraccionObjeto : Inventory
 		itemQueRecoge.GetComponent<Image>().sprite = itemSprites[countItem];
 		itemToDelete = Instantiate(itemQueRecoge, inventory.slots.transform, false);
 		itemQueSuelta.GetComponent<SpriteRenderer>().sprite = itemQueRecoge.GetComponent<Image>().sprite; //Le decimos cuál item debería soltar en caso de que presione 1
-		dialogo.text = "Found: " + itemQueRecoge.GetComponent<Image>().sprite.name;
+		dialogo.text = "-You have obtained: " + itemQueRecoge.GetComponent<Image>().sprite.name;
 		countItem++;
 	}
 
 	void objetoQueSeAbre() //Cuando el objeto del escenario SÍ tiene una interacción solo para abrirlo (Que no dropea item la primer interacción)
-	{ 
+	{
 		if (Input.GetKeyDown(KeyCode.E) && countItem < itemSprites.Length) //Si presiona E y aún quedan items disponibles, entonces cambia de sprite
 		{
-			if(countSprite == 0) //Para la primera vez que interactúa con el objeto (interacción #0)
+			if (countSprite == 0) //Para la primera vez que interactúa con el objeto (interacción #0)
 			{
 				SoundScript.playSound(audioSFX); //Audio que se va a reproducir al interactuar la primera vez con el objeto
 				this.gameObject.GetComponent<SpriteRenderer>().sprite = objetoSprites[countSprite];
@@ -82,6 +73,12 @@ public class InteraccionObjeto : Inventory
 				PickItem();
 			}
 		}
+		else if (countItem == itemSprites.Length) //Cuando ya se acabaron las interacciones, se desbloquean las siguientes secuencias de interacción
+		{ 
+			GameManager.secuenciaActual++ ;
+			countItem++;
+		}
+
 	}
 	void objetoQueNoSeAbre() //Cuando el objeto del escenario NO tiene una interacción para abrirlo (Dropea item la primer interacción)
 	{

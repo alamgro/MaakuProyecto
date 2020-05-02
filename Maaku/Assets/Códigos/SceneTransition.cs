@@ -4,19 +4,18 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
-
 public class SceneTransition : MonoBehaviour
 {
-    public AudioClip audioSFX;
     public Animator transitionAnim;
     public Text dialogo;
+    public AudioClip audioSFX;
     float timer = 0.0f;
     bool firstCicle = false;
     int count = 0;
     void Start()
     {
-        SoundScript.playSound(audioSFX);
         dialogo.text = "-The birds are singing… it’s late.";
+        SoundScript.playSound(audioSFX);
     }
 
 

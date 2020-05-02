@@ -21,9 +21,16 @@ public class Bitacora : MonoBehaviour
            Reacomodo de carpetas de sprites para Habitación2.
            Se cambia el funcionamiento de la cámara, ahora sigue al personaje en habitaciones más grandes donde sea posible. Usando el paquete de componente Cinemachine
 
-    -Alam; Se añade un Objeto AudioManager a la escena para manejar sonidos en el juego.
+    -Alam: Se añade un Objeto AudioManager a la escena para manejar sonidos en el juego.
            Añadido clip de sonido para Cofre, puerta, e intro (pájaros sonando).
            Corrección de un bug en el cofre al recoger al oso.
--
+
+    -Alam: Corrección de bug en script de la cama donde hacía que no pudiera tomar un item del cofre.
+           Se añade nuevo script para objetos interactuables que únicamente aportan un diálogo. También hace que el jugador no se pueda mover hasta que haya leído todos los diálogos.
+           Se remueve el indicador de presionar E para todos los objetos, excepto el primer dibujo de la pared (a forma de tutorial)
+           Interacción nueva con el dibujo de la pared en la habitación 1.
+           Creación de script GameManager para verificar el progreso de la historia con la variable "secuenciaActual". Con esto ya se hizo la secuencia:
+           1- Interactuar con dibujo, abrir closet, abrir cofre (No es la secuencia real en la historia, pero se usó para testing)
+
      */
 }
