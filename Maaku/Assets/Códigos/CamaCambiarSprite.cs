@@ -6,7 +6,6 @@ public class CamaCambiarSprite : MonoBehaviour
 {
     public GameObject personaje;
     public GameObject objetoDibujo;
-
     // Start is called before the first frame update
     Vector3 posReal;
     float timer = 0.0f;

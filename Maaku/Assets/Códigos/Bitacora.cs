@@ -32,5 +32,13 @@ public class Bitacora : MonoBehaviour
            Creación de script GameManager para verificar el progreso de la historia con la variable "secuenciaActual". Con esto ya se hizo la secuencia:
            1- Interactuar con dibujo, abrir closet, abrir cofre (No es la secuencia real en la historia, pero se usó para testing)
 
+
+    -Daniel: Invita la pizza. Y las chelas, aunque no le dé.
+           Corrección de movimientos generales (agacharse y brincar), se arregla bug de brincos múltiples.
+    -Alam: Corrección de secuencia de interacciones para comprobar con cuáles objetos se puede interactuar primero.
+           Nuevo código para hacer zoom al objeto que se tiene en el inventario con la tecla "2".
+    -Alvaro: Código de contador de tiempo para que el diálogo se borre después de 5 segundos.
+    -Grupal: Se trabaja en el inicio de los primeros pasos del juego.
+           
      */
 }

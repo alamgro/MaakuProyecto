@@ -13,8 +13,9 @@ public class InteraccionObjeto : Inventory
 	public AudioClip audioSFX;
 	int countSprite = 0, countItem = 0;
 	private bool isTriggered = false;
-	public static GameObject itemToDelete;
+
 	private Inventory inventory;
+
 	Text dialogo;
 
 	void Start()
@@ -25,6 +26,7 @@ public class InteraccionObjeto : Inventory
 
 	void OnTriggerEnter2D(Collider2D collision)
 	{
+
 		isTriggered = true;
 	}
 
@@ -36,7 +38,7 @@ public class InteraccionObjeto : Inventory
 	{
 		if (isTriggered && numDeSecuenciaObj <= GameManager.secuenciaActual)
 		{
-			if (esParaAbrir) 
+			if (esParaAbrir)
 				objetoQueSeAbre();
 			else
 				objetoQueNoSeAbre();
@@ -47,7 +49,7 @@ public class InteraccionObjeto : Inventory
 	{
 		inventory.isFull = true;
 		itemQueRecoge.GetComponent<Image>().sprite = itemSprites[countItem];
-		itemToDelete = Instantiate(itemQueRecoge, inventory.slots.transform, false);
+		Inventory.itemActual = Instantiate(itemQueRecoge, inventory.slots.transform, false);
 		itemQueSuelta.GetComponent<SpriteRenderer>().sprite = itemQueRecoge.GetComponent<Image>().sprite; //Le decimos cuál item debería soltar en caso de que presione 1
 		dialogo.text = "-You have obtained: " + itemQueRecoge.GetComponent<Image>().sprite.name;
 		countItem++;
@@ -74,22 +76,22 @@ public class InteraccionObjeto : Inventory
 			}
 		}
 		else if (countItem == itemSprites.Length) //Cuando ya se acabaron las interacciones, se desbloquean las siguientes secuencias de interacción
-		{ 
-			GameManager.secuenciaActual++ ;
+		{
+			GameManager.secuenciaActual++;
 			countItem++;
 		}
 
 	}
 	void objetoQueNoSeAbre() //Cuando el objeto del escenario NO tiene una interacción para abrirlo (Dropea item la primer interacción)
 	{
-		if (Input.GetKeyDown(KeyCode.E) && countSprite < objetoSprites.Length && !inventory.isFull) //Si presiona E y aún quedan sprites disponibles, entonces cambia de sprite
+		if (Input.GetKeyDown(KeyCode.E) && !inventory.isFull) //Si presiona E y aún quedan sprites disponibles, entonces cambia de sprite
 		{
 			PickItem();
-			this.gameObject.GetComponent<SpriteRenderer>().sprite = objetoSprites[countSprite];
-			countSprite++;
+			GameManager.secuenciaActual++;
+			Destroy(this.gameObject);
 		}
 	}
 
-	
+
 
 }
