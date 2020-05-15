@@ -5,11 +5,17 @@ using UnityEngine;
 public class PlayerControl : MonoBehaviour
 {
     float moveSpeed = 10.0f, jumpSpeed = 10.0f;
-    
+    public AudioClip audioSFX;
+    void Start()
+    {
+    }
     void Update()
     {
+        GameManager.VocesEnLaCabeza(audioSFX);
+
         if (Input.GetKey(KeyCode.D)) //Caminar a la derecha
         {
+            GameManager.tiempoSinMoverse = 0.0f;
             if (GetComponent<SpriteRenderer>().flipX == true)
                 GetComponent<SpriteRenderer>().flipX = false;
 

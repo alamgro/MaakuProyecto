@@ -7,11 +7,13 @@ public class InteraccionObjeto : Inventory
 {
 	public bool esParaAbrir; //Determina si el objeto tiene un sprite donde está cerrado (que tiene una interacción que no dropea item)
 	public int numDeSecuenciaObj;
+    public GameObject boton; //Boton de PressE
 	public GameObject itemQueRecoge; //Prefab que cambia el item que recoge
 	public Sprite[] objetoSprites; //Array de sprites para los muebles y objetos de escenario
 	public Sprite[] itemSprites; //Array de sprites de los items que puede recoger en este objeto
+	public string[] dialogosTexto;
 	public AudioClip audioSFX;
-	int countSprite = 0, countItem = 0;
+	int countSprite = 0, countItem = 0, cuentaDialogos = 0;
 	private bool isTriggered = false;
 
 	private Inventory inventory;
@@ -20,13 +22,13 @@ public class InteraccionObjeto : Inventory
 
 	void Start()
 	{
+		playerControl = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerControl>();
 		inventory = GameObject.FindGameObjectWithTag("Player").GetComponent<Inventory>();
 		dialogo = GameObject.FindGameObjectWithTag("Dialog").GetComponent<Text>();
 	}
 
 	void OnTriggerEnter2D(Collider2D collision)
 	{
-
 		isTriggered = true;
 	}
 
@@ -51,7 +53,7 @@ public class InteraccionObjeto : Inventory
 		itemQueRecoge.GetComponent<Image>().sprite = itemSprites[countItem];
 		Inventory.itemActual = Instantiate(itemQueRecoge, inventory.slots.transform, false);
 		itemQueSuelta.GetComponent<SpriteRenderer>().sprite = itemQueRecoge.GetComponent<Image>().sprite; //Le decimos cuál item debería soltar en caso de que presione 1
-		dialogo.text = "-You have obtained: " + itemQueRecoge.GetComponent<Image>().sprite.name;
+		//dialogo.text = dialogosTexto[countItem];
 		countItem++;
 	}
 
@@ -84,14 +86,28 @@ public class InteraccionObjeto : Inventory
 	}
 	void objetoQueNoSeAbre() //Cuando el objeto del escenario NO tiene una interacción para abrirlo (Dropea item la primer interacción)
 	{
-		if (Input.GetKeyDown(KeyCode.E) && !inventory.isFull) //Si presiona E y aún quedan sprites disponibles, entonces cambia de sprite
+		if (Input.GetKeyDown(KeyCode.E) && !inventory.isFull) 
 		{
-			PickItem();
-			GameManager.secuenciaActual++;
-			Destroy(this.gameObject);
+			if (cuentaDialogos < dialogosTexto.Length)
+			{
+				playerControl.enabled = false; //Desactivar el script de movimiento de jugador.
+				boton.SetActive(true);
+				boton.transform.position = new Vector3(this.transform.position.x, 3.5f, 0);
+
+				GameManager.ResetTimer(); //Reinicia la cuenta de tiempo para borrar el tiempo 5 segundos después.
+
+				dialogo.text = dialogosTexto[cuentaDialogos];
+				cuentaDialogos++;
+			}
+			else
+			{
+				PickItem();
+				playerControl.enabled = true;
+				boton.SetActive(false); //Quitar el botón de la pantalla
+				GameManager.secuenciaActual++;
+				Destroy(this.gameObject);
+			}
 		}
 	}
-
-
 
 }

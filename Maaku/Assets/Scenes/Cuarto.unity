@@ -601,11 +601,15 @@ MonoBehaviour:
   itemZoom: {fileID: 0}
   esParaAbrir: 0
   numDeSecuenciaObj: 1
+  boton: {fileID: 824928906}
   itemQueRecoge: {fileID: 7686038862115027372, guid: ef7591468b4ae1d4e8068b7eb6cef6b4,
     type: 3}
   objetoSprites: []
   itemSprites:
   - {fileID: 21300000, guid: e0be91d542a772e48ac79bbf14c635b5, type: 3}
+  dialogosTexto:
+  - -I drew my first day of school.
+  - -I love my backpack, is so pretty and Pink.
   audioSFX: {fileID: 0}
 --- !u!61 &392624995
 BoxCollider2D:
@@ -917,8 +921,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 600, y: 600}
+  m_AnchoredPosition: {x: 0, y: 50}
+  m_SizeDelta: {x: 700, y: 700}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &485989215
 MonoBehaviour:
@@ -938,9 +942,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 21300000, guid: dcd3146486acc78409edd3db9c15fb6d, type: 3}
   m_Type: 0
-  m_PreserveAspect: 0
+  m_PreserveAspect: 1
   m_FillCenter: 1
   m_FillMethod: 4
   m_FillAmount: 1
@@ -1047,7 +1051,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 519420028}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.0914674, y: -0.09499955, z: -10}
+  m_LocalPosition: {x: -2.0858598, y: -0.09499955, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -1205,6 +1209,7 @@ MonoBehaviour:
   itemZoom: {fileID: 0}
   esParaAbrir: 1
   numDeSecuenciaObj: 2
+  boton: {fileID: 0}
   itemQueRecoge: {fileID: 7686038862115027372, guid: ef7591468b4ae1d4e8068b7eb6cef6b4,
     type: 3}
   objetoSprites:
@@ -1214,6 +1219,9 @@ MonoBehaviour:
   itemSprites:
   - {fileID: 21300000, guid: dcd3146486acc78409edd3db9c15fb6d, type: 3}
   - {fileID: 21300000, guid: 609eb3ae453818942ae121ecdccf44b4, type: 3}
+  dialogosTexto:
+  - '-You have obtained: Batteries.'
+  - '-You have obtained: Dog collar.'
   audioSFX: {fileID: 8300000, guid: beddb77238fb76c49b4cc8cbfe732660, type: 3}
 --- !u!212 &606818796
 SpriteRenderer:
@@ -2945,13 +2953,16 @@ MonoBehaviour:
     type: 3}
   itemZoom: {fileID: 0}
   esParaAbrir: 1
-  numDeSecuenciaObj: 3
+  numDeSecuenciaObj: 100
+  boton: {fileID: 0}
   itemQueRecoge: {fileID: 7686038862115027372, guid: ef7591468b4ae1d4e8068b7eb6cef6b4,
     type: 3}
   objetoSprites:
   - {fileID: 21300000, guid: ad259825dc6a3d846a048913efb5b839, type: 3}
   itemSprites:
   - {fileID: 21300000, guid: 9164fb16908155d4e985aa464f967913, type: 3}
+  dialogosTexto:
+  - '-You have obtained: Teddy.'
   audioSFX: {fileID: 8300000, guid: beddb77238fb76c49b4cc8cbfe732660, type: 3}
 --- !u!1 &2023493751
 GameObject:
@@ -3898,6 +3909,11 @@ PrefabInstance:
       propertyPath: itemZoom
       value: 
       objectReference: {fileID: 485989213}
+    - target: {fileID: 7249536256045108547, guid: 27b0ee432444f304ebbc0ee4769587d6,
+        type: 3}
+      propertyPath: audioSFX
+      value: 
+      objectReference: {fileID: 8300000, guid: 95b12fe2001de084e8eff340b24305ac, type: 3}
     - target: {fileID: 7249536256045108550, guid: 27b0ee432444f304ebbc0ee4769587d6,
         type: 3}
       propertyPath: m_Name

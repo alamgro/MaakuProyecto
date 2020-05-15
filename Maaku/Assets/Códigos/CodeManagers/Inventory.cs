@@ -11,7 +11,7 @@ public class Inventory : MonoBehaviour
     public static GameObject itemActual;
     public GameObject itemZoom;
     private bool itemEstaEnZoom = false;
-    private PlayerControl playerControl;
+    protected PlayerControl playerControl;
 
     void Start()
     {
@@ -20,7 +20,7 @@ public class Inventory : MonoBehaviour
     }
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Alpha1) && isFull)
+        if (Input.GetKeyDown(KeyCode.Alpha1) && isFull && !itemEstaEnZoom)
         {
             //Item can be added
             Instantiate(itemQueSuelta, new Vector3(this.transform.position.x, -2.572763f, 0.0f), Quaternion.identity);
@@ -29,7 +29,6 @@ public class Inventory : MonoBehaviour
         }
         else if (Input.GetKeyDown(KeyCode.Alpha2) && isFull)
         {
-            print("Pressed 2");
             if (!itemEstaEnZoom) {
                 playerControl.enabled = false;
                 itemZoom.GetComponent<Image>().sprite = itemActual.GetComponent<Image>().sprite;

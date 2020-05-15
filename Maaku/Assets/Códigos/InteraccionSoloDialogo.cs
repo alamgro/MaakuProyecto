@@ -13,7 +13,6 @@ public class InteraccionSoloDialogo : MonoBehaviour
     private int count = 0;
     private PlayerControl playerControl;
 
-
     void Start()
     {
         playerControl = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerControl>();
@@ -35,11 +34,12 @@ public class InteraccionSoloDialogo : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.E) && isTriggered && count < textoDialogo.Length) 
         {
+            GameManager.ResetTimer();
             playerControl.enabled = false; //Desactiva el script de movimiento del jugador
             UIDialogo.text = textoDialogo[count];
             count++;
         }
-        else if (count == textoDialogo.Length)
+        else if (count == textoDialogo.Length) //Cuenta para saber si ya ha leído todos los diálogos
         {
             playerControl.enabled = true; //Activa el script de movimiento del jugador
             count++;

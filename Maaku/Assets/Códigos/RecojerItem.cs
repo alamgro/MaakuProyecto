@@ -37,7 +37,6 @@ public class RecojerItem : MonoBehaviour
 
     void PickItem()
     {
-        print("Anarquía");
         inventory.isFull = true;
         itemQueRecoge.GetComponent<Image>().sprite = this.GetComponent<SpriteRenderer>().sprite;
         Inventory.itemActual = Instantiate(itemQueRecoge, inventory.slots.transform, false);

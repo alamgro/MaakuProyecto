@@ -40,5 +40,8 @@ public class Bitacora : MonoBehaviour
     -Alvaro: Código de contador de tiempo para que el diálogo se borre después de 5 segundos.
     -Grupal: Se trabaja en el inicio de los primeros pasos del juego.
            
+    -Alam: Modificación de script para poder añadir diálogos a acada objeto y que se tenga que presionar E para pasar al siguiente diálogo.
+           Easter Egg "Voces en la cabeza", si Maaku se queda parada por más de 20 segundos empieza a escuchar voces. 
+
      */
 }
