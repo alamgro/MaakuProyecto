@@ -43,5 +43,6 @@ public class Bitacora : MonoBehaviour
     -Alam: Modificación de script para poder añadir diálogos a acada objeto y que se tenga que presionar E para pasar al siguiente diálogo.
            Easter Egg "Voces en la cabeza", si Maaku se queda parada por más de 20 segundos empieza a escuchar voces. 
 
+    -Alam: Código "DialBotones" para controlar los botones que se usarán para ingresar el código del candado.
      */
 }

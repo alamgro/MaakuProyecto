@@ -20,14 +20,14 @@ public class Inventory : MonoBehaviour
     }
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Alpha1) && isFull && !itemEstaEnZoom)
+        if (Input.GetKeyDown(KeyCode.Alpha1) && isFull && !itemEstaEnZoom) //Soltar el item del inventaro
         {
             //Item can be added
-            Instantiate(itemQueSuelta, new Vector3(this.transform.position.x, -2.572763f, 0.0f), Quaternion.identity);
+            Instantiate(itemQueSuelta, new Vector3(this.transform.position.x, -2.6f, 0.0f), Quaternion.identity);
             Destroy(itemActual);
             isFull = false;
         }
-        else if (Input.GetKeyDown(KeyCode.Alpha2) && isFull)
+        else if (Input.GetKeyDown(KeyCode.Q) && isFull) //Hacer zoom al objeto del inventario
         {
             if (!itemEstaEnZoom) {
                 playerControl.enabled = false;

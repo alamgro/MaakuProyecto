@@ -3,25 +3,27 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class InteraccionObjeto : Inventory
+public class InteraccionObjeto : MonoBehaviour
 {
 	public bool esParaAbrir; //Determina si el objeto tiene un sprite donde está cerrado (que tiene una interacción que no dropea item)
-	public int numDeSecuenciaObj;
-    public GameObject boton; //Boton de PressE
+	public int numDeSecuenciaObj; //Guarda un número que define su lugar dentro de la historia, así solo podrá interactuar con ese item cuando 
+	public GameObject boton; //Boton de PressE
 	public GameObject itemQueRecoge; //Prefab que cambia el item que recoge
+	public Sprite itemQueLoDesbloquea; //Es el item que Maaku necesita tener en el inventario para poder interactuar con este objeto (No siempre aplica)
 	public Sprite[] objetoSprites; //Array de sprites para los muebles y objetos de escenario
 	public Sprite[] itemSprites; //Array de sprites de los items que puede recoger en este objeto
+	[TextArea(2, 4)] //Para ver en el inspector los cuádros de diálogo más grandes
 	public string[] dialogosTexto;
 	public AudioClip audioSFX;
-	int countSprite = 0, countItem = 0, cuentaDialogos = 0;
+	int countSprite = 0, countItem = 0, cuentaDialogos;
 	private bool isTriggered = false;
-
 	private Inventory inventory;
-
-	Text dialogo;
+	private PlayerControl playerControl;
+	private Text dialogo;
 
 	void Start()
 	{
+		cuentaDialogos = (esParaAbrir || itemQueLoDesbloquea == null) ? 0 : 2; //Controla si el contador de diálogos inicia en 1 o 0 dependiendo de si la variable "esParaAbrir" es true
 		playerControl = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerControl>();
 		inventory = GameObject.FindGameObjectWithTag("Player").GetComponent<Inventory>();
 		dialogo = GameObject.FindGameObjectWithTag("Dialog").GetComponent<Text>();
@@ -40,24 +42,25 @@ public class InteraccionObjeto : Inventory
 	{
 		if (isTriggered && numDeSecuenciaObj <= GameManager.secuenciaActual)
 		{
-			if (esParaAbrir)
-				objetoQueSeAbre();
+			if(itemQueLoDesbloquea != null)
+				UsarItemEnObjeto();
+			else if (esParaAbrir)
+				ObjetoQueSeAbre();
 			else
-				objetoQueNoSeAbre();
+				ObjetoQueNoSeAbre();
 		}
 	}
 
-	void PickItem()
+	void PickItem() //Recoge el item
 	{
 		inventory.isFull = true;
 		itemQueRecoge.GetComponent<Image>().sprite = itemSprites[countItem];
 		Inventory.itemActual = Instantiate(itemQueRecoge, inventory.slots.transform, false);
-		itemQueSuelta.GetComponent<SpriteRenderer>().sprite = itemQueRecoge.GetComponent<Image>().sprite; //Le decimos cuál item debería soltar en caso de que presione 1
-		//dialogo.text = dialogosTexto[countItem];
+		inventory.itemQueSuelta.GetComponent<SpriteRenderer>().sprite = itemQueRecoge.GetComponent<Image>().sprite; //Le decimos cuál item debería soltar en caso de que presione 1
 		countItem++;
 	}
 
-	void objetoQueSeAbre() //Cuando el objeto del escenario SÍ tiene una interacción solo para abrirlo (Que no dropea item la primer interacción)
+	void ObjetoQueSeAbre() //Cuando el objeto del escenario SÍ tiene una interacción solo para abrirlo (Que no dropea item la primer interacción)
 	{
 		if (Input.GetKeyDown(KeyCode.E) && countItem < itemSprites.Length) //Si presiona E y aún quedan items disponibles, entonces cambia de sprite
 		{
@@ -84,20 +87,13 @@ public class InteraccionObjeto : Inventory
 		}
 
 	}
-	void objetoQueNoSeAbre() //Cuando el objeto del escenario NO tiene una interacción para abrirlo (Dropea item la primer interacción)
+	void ObjetoQueNoSeAbre() //Cuando el objeto del escenario NO tiene una interacción para abrirlo (Dropea item la primer interacción)
 	{
 		if (Input.GetKeyDown(KeyCode.E) && !inventory.isFull) 
 		{
 			if (cuentaDialogos < dialogosTexto.Length)
 			{
-				playerControl.enabled = false; //Desactivar el script de movimiento de jugador.
-				boton.SetActive(true);
-				boton.transform.position = new Vector3(this.transform.position.x, 3.5f, 0);
-
-				GameManager.ResetTimer(); //Reinicia la cuenta de tiempo para borrar el tiempo 5 segundos después.
-
-				dialogo.text = dialogosTexto[cuentaDialogos];
-				cuentaDialogos++;
+				MostrarDialogos();
 			}
 			else
 			{
@@ -109,5 +105,57 @@ public class InteraccionObjeto : Inventory
 			}
 		}
 	}
+
+	/*
+	 * El orden de los diálogos par el inspector de este objeto es:
+	 * Primer diálogo: lo que Maaku dice cuando no tiene el item correcto en el inventario.
+	 * Segundo diálogo:Es el diálogo que Maaku dice cuando ya ha usado el item correcto en este objeto y no quedan más interacciones.
+	 * Último diálogo:  Todos los diálogos que el usuario leerá cuando esté interactuando con el objeto (Tiene el item correcto en inventario).
+	 */
+	void UsarItemEnObjeto()
+	{
+		if(Input.GetKeyDown(KeyCode.E))
+		{
+			if (itemQueRecoge.GetComponent<Image>().sprite != itemQueLoDesbloquea) //Cuando no tiene el item correcto en inventario.
+			{
+				dialogo.text = dialogosTexto[0]; //El diálogo en ínidice 0 siempre es el que muestra cuando no tienes el item correcto en inventario.
+			}
+			//REVISAR AQUÍ SI FALLA ALGO DE LOS DIÁLOGOS (dialogosTexto.Length -1)
+			else if (cuentaDialogos < dialogosTexto.Length) //Cuando tiene el item correcto pero tiene que presionar E para que se acaben los diálogos.
+			{
+				inventory.enabled = false; //Desactiva inventario para que no pueda hacer zoom al objeto del inventario mientras ve los diálogos
+				MostrarDialogos();
+			}
+			else if(cuentaDialogos == dialogosTexto.Length) //Cuando ya han acabado los diálogos y usa el item del inventario
+			{
+				inventory.enabled = true;
+				inventory.isFull = false;
+				dialogo.text = "You used: " + Inventory.itemActual.GetComponent<SpriteRenderer>().sprite.name;
+				cuentaDialogos++;
+				boton.SetActive(false);
+				playerControl.enabled = true;
+				GameManager.secuenciaActual++;
+				Destroy(Inventory.itemActual);
+			}
+			else
+			{
+				dialogo.text = dialogosTexto[1]; //Diálogo para cuando ya no queden más interacciones con este item
+			}
+			GameManager.ResetTimer();
+		}
+	}
+
+	void MostrarDialogos()
+	{
+		playerControl.enabled = false; //Desactivar el script de movimiento de jugador.
+		boton.SetActive(true);
+		boton.transform.position = new Vector3(this.transform.position.x, 3.5f, 0);
+
+		GameManager.ResetTimer(); //Reinicia la cuenta de tiempo para borrar el tiempo 5 segundos después.
+
+		dialogo.text = dialogosTexto[cuentaDialogos];
+		cuentaDialogos++;
+	}
+
 
 }
