@@ -130,12 +130,13 @@ public class InteraccionObjeto : MonoBehaviour
 			{
 				inventory.enabled = true;
 				inventory.isFull = false;
-				dialogo.text = "You used: " + Inventory.itemActual.GetComponent<SpriteRenderer>().sprite.name;
+				dialogo.text = "You used: " + Inventory.itemActual.GetComponent<Image>().sprite.name;
 				cuentaDialogos++;
 				boton.SetActive(false);
 				playerControl.enabled = true;
 				GameManager.secuenciaActual++;
 				Destroy(Inventory.itemActual);
+				PickItem();
 			}
 			else
 			{

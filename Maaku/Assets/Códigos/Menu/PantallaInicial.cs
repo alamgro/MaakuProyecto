@@ -13,7 +13,7 @@ public class PantallaInicial : MonoBehaviour
 
     public void EmpezarJuego()
     {
-        SceneManager.LoadScene("Cuarto");
+        SceneManager.LoadScene("PantallaDeTexto");
     }
 
     public void Creditos()

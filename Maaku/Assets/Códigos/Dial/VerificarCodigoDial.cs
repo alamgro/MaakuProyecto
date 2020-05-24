@@ -5,7 +5,6 @@ using UnityEngine.UI;
 
 public class VerificarCodigoDial : MonoBehaviour
 {
-
     public Button[] boton;
     private string claveCorrecta = "9021";
     private string claveIngresada;

@@ -14,7 +14,7 @@ public class GameManager : MonoBehaviour
     public static void VocesEnLaCabeza(AudioClip audioSFX) //Si Maaku deja de moverse por 20 segundos, escuchará voces
     {
         tiempoSinMoverse += Time.deltaTime;
-        if(tiempoSinMoverse >= 20.0f)
+        if(tiempoSinMoverse >= 2990.0f) //Cambiar a 20 seg
         {
             tiempoSinMoverse = 0.0f;
             SoundScript.playSound(audioSFX);
