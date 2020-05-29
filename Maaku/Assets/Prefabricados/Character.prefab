@@ -121,6 +121,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ad7546c2758161041af28fe34127ad75, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  audioSFX: {fileID: 0}
+  vmax: 20
+  vel: 20
+  estaTocandoPiso: 0
+  agachada: 0
+  iniciarSalto: 0
+  poder_salto: 6.5
+  precionaE: 0
+  puedeCaminar: 0
+  puedeCaminar2: 0
 --- !u!95 &7249536256045108546
 Animator:
   serializedVersion: 3

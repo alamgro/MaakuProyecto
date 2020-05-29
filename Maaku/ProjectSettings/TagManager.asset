@@ -7,6 +7,7 @@ TagManager:
   - Ground
   - Dialog
   - Zoom
+  - piso
   layers:
   - Default
   - TransparentFX
