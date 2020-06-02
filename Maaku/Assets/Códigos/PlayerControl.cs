@@ -39,17 +39,17 @@ public class PlayerControl : MonoBehaviour
         animar.SetFloat("velocidad", Mathf.Abs(rb.velocity.x));
         animar.SetBool("piso", estaTocandoPiso);
 
-        print(momentoInicilizarBrinco);
-        if (Input.GetKeyDown(KeyCode.W) && estaTocandoPiso)// al presionar salta
+        if (Input.GetKeyDown(KeyCode.W) && estaTocandoPiso && agachada == false && precionaE == false)// al presionar salta
         {
             momentoInicilizarBrinco = Time.time + duracionEspera;
             saltar = true;
 
         }
-        else if (Input.GetKeyDown(KeyCode.S)) // mientras este apretada se agacha y no se puede mover
+        else if (Input.GetKeyDown(KeyCode.S) && precionaE == false) // mientras este apretada se agacha y no se puede mover
         {
             agachada = true;
             puedeCaminar = false;
+
             vel = 0f;
         }
         else if (Input.GetKeyUp(KeyCode.S)) // al soltarla se levanta y puede volver a moverse
@@ -57,7 +57,7 @@ public class PlayerControl : MonoBehaviour
             agachada = false;
             InicializarCaminar = Time.time + duracionEspera2;
         }
-        else if (Input.GetKeyDown(KeyCode.E)) // se activa animacion de agarrar algo
+        else if (Input.GetKeyDown(KeyCode.E) && agachada == false) // se activa animacion de agarrar algo
         {
             precionaE = true;
             puedeCaminar2 = false;
@@ -76,7 +76,6 @@ public class PlayerControl : MonoBehaviour
                 if (Time.time >= InicializarCaminar)
                 {
                     vel = 5f;
-                    print("te puedes mover");
                     puedeCaminar = true;
                 }
             }
@@ -88,7 +87,6 @@ public class PlayerControl : MonoBehaviour
                 if (Time.time >= InicializarCaminar)
                 {
                     vel = 5f;
-                    print("puedes moverte ya no presionas e");
                     puedeCaminar = true;
                 }
             }
