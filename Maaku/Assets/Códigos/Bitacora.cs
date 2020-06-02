@@ -44,5 +44,7 @@ public class Bitacora : MonoBehaviour
            Easter Egg "Voces en la cabeza", si Maaku se queda parada por más de 20 segundos empieza a escuchar voces. 
 
     -Alam: Código "DialBotones" para controlar los botones que se usarán para ingresar el código del candado.
+
+    -Daniel: Corrección de bugs, trabajé en el conjunto de ropa 2 y su lógica. Modificación del código de PlayerControl para arreglar problemas de movimiento.
      */
 }

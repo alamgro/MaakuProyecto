@@ -12,7 +12,7 @@ public class PlayerControl : MonoBehaviour
     private Animator animar;
     private SpriteRenderer sprite;
     public float vmax = 20f;
-    public float vel = 20f;
+    public static float vel = 20f;
     public bool estaTocandoPiso;
     public bool agachada;
     public bool iniciarSalto;
@@ -45,11 +45,10 @@ public class PlayerControl : MonoBehaviour
             saltar = true;
 
         }
-        else if (Input.GetKeyDown(KeyCode.S) && precionaE == false) // mientras este apretada se agacha y no se puede mover
+        else if (Input.GetKeyDown(KeyCode.S) && precionaE == false && saltar == false && estaTocandoPiso == true) // mientras este apretada se agacha y no se puede mover
         {
             agachada = true;
             puedeCaminar = false;
-
             vel = 0f;
         }
         else if (Input.GetKeyUp(KeyCode.S)) // al soltarla se levanta y puede volver a moverse
@@ -57,7 +56,7 @@ public class PlayerControl : MonoBehaviour
             agachada = false;
             InicializarCaminar = Time.time + duracionEspera2;
         }
-        else if (Input.GetKeyDown(KeyCode.E) && agachada == false) // se activa animacion de agarrar algo
+        else if (Input.GetKeyDown(KeyCode.E) && agachada == false && saltar == false) // se activa animacion de agarrar algo
         {
             precionaE = true;
             puedeCaminar2 = false;
@@ -82,11 +81,11 @@ public class PlayerControl : MonoBehaviour
         }
         else if (puedeCaminar2 == false)
         {
-            if (precionaE == false)
+            if (precionaE == false && !GameManager.aMenuIsOpen)
             {
                 if (Time.time >= InicializarCaminar)
                 {
-                    vel = 5f;
+                    vel = 6f;
                     puedeCaminar = true;
                 }
             }

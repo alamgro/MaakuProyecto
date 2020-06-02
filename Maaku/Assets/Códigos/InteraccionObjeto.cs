@@ -55,6 +55,7 @@ public class InteraccionObjeto : MonoBehaviour
 	{
 		inventory.isFull = true;
 		itemQueRecoge.GetComponent<Image>().sprite = itemSprites[countItem];
+		ZoomItem.itemParaHacerZoom = itemQueRecoge.GetComponent<Image>().sprite; //Asignar el item al que debe de hacer zoom
 		Inventory.itemActual = Instantiate(itemQueRecoge, inventory.slots.transform, false);
 		inventory.itemQueSuelta.GetComponent<SpriteRenderer>().sprite = itemQueRecoge.GetComponent<Image>().sprite; //Le decimos cuál item debería soltar en caso de que presione 1
 		countItem++;

@@ -8,6 +8,7 @@ TagManager:
   - Dialog
   - Zoom
   - piso
+  - DialCanvas
   layers:
   - Default
   - TransparentFX

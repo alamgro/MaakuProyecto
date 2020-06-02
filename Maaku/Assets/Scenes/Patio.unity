@@ -132,6 +132,7 @@ GameObject:
   - component: {fileID: 89527133}
   - component: {fileID: 89527135}
   - component: {fileID: 89527134}
+  - component: {fileID: 89527136}
   m_Layer: 5
   m_Name: Dial
   m_TagString: Untagged
@@ -198,6 +199,23 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 89527132}
   m_CullTransparentMesh: 0
+--- !u!114 &89527136
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 89527132}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b74d4d01458f464ca2e4ff1ba7864ba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  boton:
+  - {fileID: 409261071}
+  - {fileID: 524747714}
+  - {fileID: 1124951821}
+  - {fileID: 1813765770}
 --- !u!1 &314364185
 GameObject:
   m_ObjectHideFlags: 0
@@ -1059,7 +1077,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1277831947
 Transform:
   m_ObjectHideFlags: 0
@@ -1221,7 +1239,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1514743612
 MonoBehaviour:
   m_ObjectHideFlags: 0

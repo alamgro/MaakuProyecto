@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 6097227954141735112}
   - component: {fileID: 3025697407818614920}
   - component: {fileID: 5717868704426157825}
-  - component: {fileID: -8730491739802097406}
   m_Layer: 5
   m_Name: ItemQueRecoge
   m_TagString: Untagged
@@ -74,16 +73,3 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &-8730491739802097406
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7686038862115027372}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 261f8f5f0bac2304a826f3b2c2414f4d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  itemParaHacerZoom: {fileID: 0}

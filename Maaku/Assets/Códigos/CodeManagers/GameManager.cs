@@ -10,7 +10,7 @@ public class GameManager : MonoBehaviour
     public static float tiempoSinMoverse = 0.0f;
     public static bool triggerBorrarTexto = false;
     public static int secuenciaActual = 0; //Marca el progreso del juego
-
+    public static bool aMenuIsOpen = false;
     public static void VocesEnLaCabeza(AudioClip audioSFX) //Si Maaku deja de moverse por 20 segundos, escuchará voces
     {
         tiempoSinMoverse += Time.deltaTime;

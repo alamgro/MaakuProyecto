@@ -39,6 +39,7 @@ public class RecojerItem : MonoBehaviour
     {
         inventory.isFull = true;
         itemQueRecoge.GetComponent<Image>().sprite = this.GetComponent<SpriteRenderer>().sprite;
+        ZoomItem.itemParaHacerZoom = itemQueRecoge.GetComponent<Image>().sprite; //Asignar el item al que debe de hacer zoom
         Inventory.itemActual = Instantiate(itemQueRecoge, inventory.slots.transform, false);
         this.GetComponent<SpriteRenderer>().sprite = itemQueRecoge.GetComponent<Image>().sprite;
         inventory.itemQueSuelta.GetComponent<SpriteRenderer>().sprite = itemQueRecoge.GetComponent<Image>().sprite;
