@@ -1494,9 +1494,11 @@ GameObject:
   - component: {fileID: 801214964}
   - component: {fileID: 801214965}
   - component: {fileID: 801214966}
+  - component: {fileID: 801214968}
+  - component: {fileID: 801214967}
   m_Layer: 0
   m_Name: Cama
-  m_TagString: Untagged
+  m_TagString: piso
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1572,13 +1574,51 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 801214963}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5d4006e8b2d3d794898ae9a4caf3672d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   personaje: {fileID: 1583766698}
   objetoDibujo: {fileID: 2033608786}
+--- !u!114 &801214967
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 801214963}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ab74254dcff04f44daa08140ed1da128, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!61 &801214968
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 801214963}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 6200000, guid: 4444e570f74f9fb49ba7fefc96e79a94, type: 2}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.24055338, y: -0.73486996}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 5.64, y: 2.8}
+    newSize: {x: 5.64, y: 2.8}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 5.1588926, y: 1.33026}
+  m_EdgeRadius: 0
 --- !u!1 &824928906
 GameObject:
   m_ObjectHideFlags: 0
@@ -3762,7 +3802,7 @@ BoxCollider2D:
   m_GameObject: {fileID: 2061414560}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: a14d3df47d0279f48834bd511ea5531d, type: 2}
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
