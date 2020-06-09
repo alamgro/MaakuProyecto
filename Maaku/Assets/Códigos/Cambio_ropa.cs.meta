@@ -1,0 +1,13 @@
+fileFormatVersion: 2
+guid: 79ae3142300fcbd4a9ac903560c1b400
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - Player_outfit1_sombrero: {fileID: 22100000, guid: 8e69447fb68c1334aaf511ccdd4f4a1d,
+      type: 2}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

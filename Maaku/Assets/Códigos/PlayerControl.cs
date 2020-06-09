@@ -22,8 +22,8 @@ public class PlayerControl : MonoBehaviour
     float momentoInicilizarBrinco = 0.0f;
     float InicializarCaminar = 0.0f;
     float duracionEspera = 0.45f;
-    float duracionEspera2 = 1.5f;
-    float duracionEspera3 = 1f;
+    float duracionEspera2 = 0.8f;
+    float duracionEspera3 = 0.8f;
     public bool puedeCaminar;
     public bool puedeCaminar2;
 
@@ -38,7 +38,7 @@ public class PlayerControl : MonoBehaviour
     {
         animar.SetFloat("velocidad", Mathf.Abs(rb.velocity.x));
         animar.SetBool("piso", estaTocandoPiso);
-
+     
         if (Input.GetKeyDown(KeyCode.W) && estaTocandoPiso && agachada == false && precionaE == false)// al presionar salta
         {
             momentoInicilizarBrinco = Time.time + duracionEspera;
