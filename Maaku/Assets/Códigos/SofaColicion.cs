@@ -6,6 +6,7 @@ using UnityEngine.UIElements;
 public class SofaColicion : MonoBehaviour
 {
     private GameObject makku;
+    public float altura;
     void Start()
     {
         makku = GameObject.FindGameObjectWithTag("Player");
@@ -15,7 +16,7 @@ public class SofaColicion : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(makku.transform.position.y > -1.5)
+        if(makku.transform.position.y > altura)
         {
             this.GetComponent<BoxCollider2D>().enabled = true;
         }

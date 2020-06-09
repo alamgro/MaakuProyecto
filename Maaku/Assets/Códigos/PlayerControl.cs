@@ -22,8 +22,8 @@ public class PlayerControl : MonoBehaviour
     float momentoInicilizarBrinco = 0.0f;
     float InicializarCaminar = 0.0f;
     float duracionEspera = 0.45f;
-    float duracionEspera2 = 1.5f;
-    float duracionEspera3 = 1f;
+    float duracionEspera2 = 0.8f;
+    float duracionEspera3 = 0.8f;
     public bool puedeCaminar;
     public bool puedeCaminar2;
 
@@ -38,14 +38,14 @@ public class PlayerControl : MonoBehaviour
     {
         animar.SetFloat("velocidad", Mathf.Abs(rb.velocity.x));
         animar.SetBool("piso", estaTocandoPiso);
-
+     
         if (Input.GetKeyDown(KeyCode.W) && estaTocandoPiso && agachada == false && precionaE == false)// al presionar salta
         {
             momentoInicilizarBrinco = Time.time + duracionEspera;
             saltar = true;
 
         }
-        else if (Input.GetKeyDown(KeyCode.S) && precionaE == false) // mientras este apretada se agacha y no se puede mover
+        else if (Input.GetKeyDown(KeyCode.S) && precionaE == false && saltar == false && estaTocandoPiso == true) // mientras este apretada se agacha y no se puede mover
         {
             agachada = true;
             puedeCaminar = false;
@@ -57,7 +57,7 @@ public class PlayerControl : MonoBehaviour
             agachada = false;
             InicializarCaminar = Time.time + duracionEspera2;
         }
-        else if (Input.GetKeyDown(KeyCode.E) && agachada == false) // se activa animacion de agarrar algo
+        else if (Input.GetKeyDown(KeyCode.E) && agachada == false && saltar == false) // se activa animacion de agarrar algo
         {
             precionaE = true;
             puedeCaminar2 = false;
