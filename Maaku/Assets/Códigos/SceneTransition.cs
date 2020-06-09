@@ -18,7 +18,6 @@ public class SceneTransition : MonoBehaviour
         SoundScript.playSound(audioSFX);
     }
 
-
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Space)) //Presionar tecla Espacio para quitar el intro
